@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HesapMakinesi.BilimselPage"
+             xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:HesapMakinesi"
+             mc:Ignorable="d"
+             Title="Bilimsel">
+
+    <ContentPage.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+        <Style TargetType="Button" x:Key="Mb">
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="10"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto,2*,Auto,Auto,*,*,*,*,*,*,*,*"
+          ColumnDefinitions="*,*,*,*,*" Margin="10">
+
+        <Label x:Name="lblHistory" Text="" HorizontalTextAlignment="End"
+               FontSize="Large" Margin="5"
+               Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"/>
+
+        <Entry x:Name="cScreen" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5"
+               FontSize="48" Text="0"
+               HorizontalTextAlignment="End"
+               IsReadOnly="True"/>
+        <Grid ColumnDefinitions="*,*" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" >
+            <Button Text="DEG" Grid.Column="0" Style="{StaticResource Mb}"/>
+            <Button Text="F-E" Grid.Column="1" Style="{StaticResource Mb}"/>
+        </Grid>
+
+        <Grid ColumnDefinitions="*,*,*,*,*,*" Grid.Row="3" Grid.ColumnSpan="5">
+            <Button Text="MC" Grid.Column="0" Style="{StaticResource Mb}"/>
+            <Button Text="MR" Grid.Column="1" Style="{StaticResource Mb}"/>
+            <Button Text="M+" Grid.Column="2" Style="{StaticResource Mb}"/>
+            <Button Text="M-" Grid.Column="3" Style="{StaticResource Mb}"/>
+            <Button Text="MS" Grid.Column="4" Style="{StaticResource Mb}"/>
+            <Button Text="Mv" Grid.Column="5" Style="{StaticResource Mb}"/>
+        </Grid>
+        <Grid x:Name="ButtonRow" ColumnDefinitions="*,*" Grid.Row="4" Grid.ColumnSpan="4">
+            <Button x:Name="TrigButton" Text="◢ Trigonometri ∨"
+                    Grid.Column="0"
+                    Style="{StaticResource Mb}"
+                    Clicked="TrigonometriToggle"
+                    BackgroundColor="#404040"/>
+
+            <Button Text="ƒ İşlev ∨" 
+                    Grid.Column="1" 
+                    Style="{StaticResource Mb}"
+                    Clicked="IslevToggle" 
+                    BackgroundColor="#404040"/>
+        </Grid>
+
+        <Grid x:Name="TrigPanel"
+              IsVisible="False"
+              Grid.Row="5" Grid.Column="0"    Grid.ColumnSpan="3" Grid.RowSpan="3" ZIndex="100"   >
+            <Border BackgroundColor="#282828"
+                    StrokeShape="RoundRectangle 5"
+                    Padding="5"
+                    >
+               
+
+                <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="*,*">
+                    <Button Text="2nd" Grid.Row="0" Grid.Column="0" Clicked="TrigFunctionClicked" Style="{StaticResource Mb}" />
+                    <Button Text="sin" Grid.Row="0" Grid.Column="1" Clicked="TrigFunctionClicked" Style="{StaticResource Mb}" />
+                    <Button Text="cos" Grid.Row="0" Grid.Column="2" Clicked="TrigFunctionClicked" Style="{StaticResource Mb}" />
+                    <Button Text="tan" Grid.Row="0" Grid.Column="3" Clicked="TrigFunctionClicked" Style="{StaticResource Mb}" />
+
+                    <Button Text="hyp" Grid.Row="1" Grid.Column="0" Clicked="TrigFunctionClicked" Style="{StaticResource Mb}" />
+                    <Button Text="sec" Grid.Row="1" Grid.Column="1" Clicked="TrigFunctionClicked" Style="{StaticResource Mb}" />
+                    <Button Text="csc" Grid.Row="1" Grid.Column="2" Clicked="TrigFunctionClicked" Style="{StaticResource Mb}" />
+                    <Button Text="cot" Grid.Row="1" Grid.Column="3" Clicked="TrigFunctionClicked" Style="{StaticResource Mb}" />
+                </Grid>
+            </Border>
+        </Grid>
+        
+        <Grid x:Name="IslevPanel"
+      IsVisible="False"
+      Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="3" ZIndex="100"
+      >
+            <Border BackgroundColor="#282828"
+            StrokeShape="RoundRectangle 5"
+            Padding="5">
+                <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*">
+                    <Button Text="|x|" Grid.Row="0" Grid.Column="0" Clicked="IslevFunctionClicked" Style="{StaticResource Mb}" />
+                    <Button Text="[x]" Grid.Row="0" Grid.Column="1" Clicked="IslevFunctionClicked" Style="{StaticResource Mb}" />
+                    <Button Text="[x]" Grid.Row="0" Grid.Column="2" Clicked="IslevFunctionClicked" Style="{StaticResource Mb}" />
+                    <Button Text="rand" Grid.Row="1" Grid.Column="0" Clicked="IslevFunctionClicked" Style="{StaticResource Mb}" />
+                    <Button Text="→dms" Grid.Row="1" Grid.Column="1" Clicked="IslevFunctionClicked" Style="{StaticResource Mb}" />
+                    <Button Text="→deg" Grid.Row="1" Grid.Column="2" Clicked="IslevFunctionClicked" Style="{StaticResource Mb}" />
+                </Grid>
+            </Border>
+        </Grid>
+        <Button Grid.Row="5" Grid.Column="0" Text="2nd"/>
+        <Button Grid.Row="5" Grid.Column="1" Text="π" Clicked="FunctionClicked"/>
+        <Button Grid.Row="5" Grid.Column="2" Text="e" Clicked="FunctionClicked" />
+        <Button Grid.Row="5" Grid.Column="3" Text="C" Clicked="ClearClicked"/>
+        <Button Grid.Row="5" Grid.Column="4" Text="⌫" Clicked="BackspaceClicked"/>
+
+        <Button Grid.Row="6" Grid.Column="0" Text="1/x" Clicked="FunctionClicked"/>
+        <Button Grid.Row="6" Grid.Column="1" Text="x²" Clicked="FunctionClicked" />
+        <Button Grid.Row="6" Grid.Column="2" Text="|x|" Clicked="FunctionClicked" />
+        <Button Grid.Row="6" Grid.Column="3" Text="exp" Clicked="FunctionClicked"/>
+        <Button Grid.Row="6" Grid.Column="4" Text="mod" Clicked="OperatorClicked" />
+
+        <Button Grid.Row="7" Grid.Column="0" Text="²√x" Clicked="FunctionClicked"/>
+        <Button Grid.Row="7" Grid.Column="1" Text="(" />
+        <Button Grid.Row="7" Grid.Column="2" Text=")"/>
+        <Button Grid.Row="7" Grid.Column="3" Text="n!" Clicked="FunctionClicked"/>
+        <Button Grid.Row="7" Grid.Column="4" Text="÷" Clicked="OperatorClicked"/>
+
+        <Button Grid.Row="8" Grid.Column="0" Text="x^y" Clicked="OperatorClicked"/>
+        <Button Grid.Row="8" Grid.Column="1" Text="7" Clicked="NumClicked" />
+        <Button Grid.Row="8" Grid.Column="2" Text="8" Clicked="NumClicked" />
+        <Button Grid.Row="8" Grid.Column="3" Text="9" Clicked="NumClicked"/>
+        <Button Grid.Row="8" Grid.Column="4" Text="x" Clicked="OperatorClicked"/>
+
+        <Button Grid.Row="9" Grid.Column="0" Text="10^x" Clicked="FunctionClicked"/>
+        <Button Grid.Row="9" Grid.Column="1" Text="4" Clicked="NumClicked" />
+        <Button Grid.Row="9" Grid.Column="2" Text="5" Clicked="NumClicked" />
+        <Button Grid.Row="9" Grid.Column="3" Text="6" Clicked="NumClicked"/>
+        <Button Grid.Row="9" Grid.Column="4" Text="-" Clicked="OperatorClicked"/>
+        
+        <Button Grid.Row="10" Grid.Column="0" Text="log" Clicked="FunctionClicked"/>
+        <Button Grid.Row="10" Grid.Column="1" Text="1" Clicked="NumClicked" />
+        <Button Grid.Row="10" Grid.Column="2" Text="2" Clicked="NumClicked" />
+        <Button Grid.Row="10" Grid.Column="3" Text="3" Clicked="NumClicked"/>
+        <Button Grid.Row="10" Grid.Column="4" Text="+" Clicked="OperatorClicked"/>
+
+
+
+        <Button Grid.Row="11" Grid.Column="0" Text="ln" Clicked="FunctionClicked"/>
+        <Button Grid.Row="11" Grid.Column="1" Text="+/-" Clicked="NumClicked" />
+        <Button Grid.Row="11" Grid.Column="2" Text="0" Clicked="NumClicked" />
+        <Button Grid.Row="11" Grid.Column="3" Text="," Clicked="NumClicked"/>
+        <Button Grid.Row="11" Grid.Column="4" Text="=" Clicked="EqualClicked"
+                Background="BlueViolet"
+                TextColor="black"/>
+
+    </Grid>
+</ContentPage>
